@@ -10,11 +10,10 @@ Tested on Raspberry Pi running Raspbian and Ubuntu.
 
 ![NodeMonitor](https://wintercooled.github.io/images/NodeMonitor.png)
 
-### How to run
+### How to install and run
 
-Assumes you already have Bitcoin Core daemon (bitcoind) and c-lightning daemon (lightningd) installed and running. If you don't have either running that's fine at this stage.
+Assumes you already have Bitcoin Core daemon (bitcoind) and c-lightning daemon (lightningd) installed and running. If you don't have either running that's fine at this stage. Assumes you have python and python pip already installed.
 
-Assumes you have python and python pip already installed.
 
 Install virtualenv so we can set up an isolated build environment.
 
