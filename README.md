@@ -98,3 +98,6 @@ NodeMonitor/dashboard/views.py
 views.py contains the code that connects to the nodes.
 
 index.html displays the data returned from views.py.
+
+### By the way...
+The ". . ." at the bottom of each node status panel doesn't do anything (yet), sorry if you wasted time clicking on it!
