@@ -34,7 +34,9 @@ Add a virtualenv workspace for our project.
 Install the required dependancies. These are:
 
 django - https://www.djangoproject.com/
+
 pylightning - https://github.com/ElementsProject/lightning/tree/master/contrib/pylightning
+
 pythoin-bitcoinrpc - https://github.com/jgarzik/python-bitcoinrpc
 
 ```
@@ -95,5 +97,4 @@ NodeMonitor/dashboard/views.py
 ```
 views.py contains the code that connects to the nodes.
 
-index.html then displays the data returned.
-index.html conta
+index.html displays the data returned from views.py.
