@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="refresh" content="30" />
+<style>
+
+.circle-base {
+  border-radius: 50%;
+  behavior: url(PIE.htc);
+  width: 16px;
+  height: 16px;
+  float: right;
+}
+
+.ok {
+  background: #00CCCC;
+  border: 3px solid #00CCCC;
+}
+
+.notok {
+  background: #E60073;
+  border: 3px solid #E60073;
+}
+
+
+.ln-logo {
+  height: 50px;
+  vertical-align: middle;
+  margin-left: -20px;
+  padding-right: 8px; 
+  //display: none;
+}
+
+.b-logo {
+  height: 42px;
+  vertical-align: middle;
+  padding-right: 24px;
+  padding-top: 6px;
+  padding-bottom: 2px;
+  //display: none;
+}
+
+body {   
+font-family: Tahoma, Geneva, sans-serif;
+font-size: 22px;
+letter-spacing: 1px;
+word-spacing: 0px;
+color: #000000;
+font-weight: normal;
+text-decoration: none;
+font-style: normal;
+text-transform: none;
+}
+
+.content {
+  text-align: center;
+  margin-top: 50px;
+}
+
+table {
+  margin-left:20px;
+  margin-right:20px;
+
+    border: 1px solid #A9A9A9;
+    padding: 0px;
+    box-shadow: 8px 12px 16px #C4C4C4;
+
+    border-radius: 10px;
+
+//background: #FFFFFF;
+//background: -moz-linear-gradient(top, #FFFFFF 0%, #FAFAFA 100%);
+//background: -webkit-linear-gradient(top, #FFFFFF 0%, #FAFAFA 100%);
+//background: linear-gradient(to bottom, #FFFFFF 0%, #FAFAFA 100%);
+}
+
+td {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+
+
+tr td:first-child {
+    padding-left: 40px;
+    padding-right: 90px;
+    text-align: left;
+}
+
+tr td:last-child {
+    padding-left: 30px;
+    padding-right: 40px;
+text-align: right;
+}
+
+th {
+  font-size: 32px;
+  letter-spacing: -2px;
+  text-align: left;
+  padding-left: 40px;
+  padding-top: 36px;
+  padding-bottom: 28px;
+//text-shadow: 1px 1px 4px #A0A0A0;
+border-bottom: 1px solid #E8E8E8;
+}
+
+tr:last-child { 
+  padding-bottom: 40px;
+}
+
+.first-row-col {
+  padding-top:32px;
+}
+
+.last-cell {
+  padding-bottom: 32px;
+}
+
+</style>
+</head>
+
+<body>
+
+{% load static %} 
+
+<div class="content">
+
+<table style="display: inline-block;">
+  <tr>
+    <th colspan="2"><img class="b-logo" src="{% static "dashboard/bitcoin.png" %}" alt="">Bitcoin Node</th>
+  </tr>
+
+  <tr>
+    <td class="first-row-col">Running</td>
+    <td class="first-row-col">
+    {% if bitcoin.running %}
+      <div class="circle-base ok"></div>
+    {% else %}
+      <div class="circle-base notok"></div>
+    {% endif %}
+    </td>
+  </tr>
+
+  <tr>
+    <td>Online</td>
+    <td>
+    {% if bitcoin.online %}
+      <div class="circle-base ok"></div>
+    {% else %}
+      <div class="circle-base notok"></div>
+    {% endif %}
+    </td>
+  </tr>
+
+  <tr>
+    <td>Peers</td>
+    <td>{{ bitcoin.peer_count }}</td>
+  </tr>
+
+  <tr>
+    <td>Block Height</td>
+    <td>{{ bitcoin.block_height }}</td>
+  </tr>
+
+  <tr>
+    <td>Version</td>
+    <td>{{ bitcoin.version }}</td>
+  </tr>
+
+  <tr>
+    <td></td> 
+    <td class="last-cell">. . .</td>
+  </tr>
+
+</table>
+
+<table style="display: inline-block;">
+  <tr>
+    <th colspan="2"><img class="ln-logo" src="{% static "dashboard/lightning.jpg" %}" alt="">Lightning Node</th> 
+  </tr>
+
+  <tr>
+    <td class="first-row-col">Running</td> 
+    <td class="first-row-col">
+    {% if lightning.running %}
+      <div class="circle-base ok"></div>
+    {% else %}
+      <div class="circle-base notok"></div>
+    {% endif %}
+    </td>
+  </tr>
+
+  <tr>
+    <td>Peers</td> 
+    <td>{{ lightning.peer_count }}</td>
+  </tr>
+
+  <tr>
+    <td>Channels</td> 
+    <td>{{ lightning.channel_count }}</td>
+  </tr>
+
+  <tr>
+    <td>Block Height</td> 
+    <td>{{ lightning.block_height }}</td>
+  </tr>
+
+  <tr>
+    <td>Version</td> 
+    <td>{{ lightning.version }}</td>
+  </tr>
+
+  <tr>
+    <td></td> 
+    <td class="last-cell">. . .</td>
+  </tr>
+
+</table>
+
+</div>
+
+</body>
+</html>
