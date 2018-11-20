@@ -1,34 +1,34 @@
-# Assumes you already have Bitcoin Core daemon (bitcoind) and c-lightning daemon (lightningd) installed and running
+Assumes you already have Bitcoin Core daemon (bitcoind) and c-lightning daemon (lightningd) installed and running
 
-# Assumes you have python and python pip already installed
+Assumes you have python and python pip already installed
 
-# Install virtualenv so we can set up an isolated build environment
+Install virtualenv so we can set up an isolated build environment
 
 sudo pip install virtualenv
 
-# Move to the home directory
+Move to the home directory
 
 cd
 
-# Set up a virtualenv workspace for our project
+Set up a virtualenv workspace for our project
 
 virtualenv python-django-workspace
 
-# Move into the new directory
+Move into the new directory
 
 cd python-django-workspace
 
-# Install components we will use: 
-#  django as the web framework
-#  lightningd rpc using https://github.com/ElementsProject/lightning/tree/master/contrib/pylightning
-#  bitcoind rpc using https://github.com/jgarzik/python-bitcoinrpc
+Install components we will use: 
+django as the web framework
+lightningd rpc using https://github.com/ElementsProject/lightning/tree/master/contrib/pylightning
+bitcoind rpc using https://github.com/jgarzik/python-bitcoinrpc
 
 sudo python -m pip install "django<2"
 sudo pip install pylightning
 sudo pip install python-bitcoinrpc 
 
-#CONFIG:
-#todo - add u and p to settings file?
+CONFIG:
+todo - add u and p to settings file?
 edit nodemonitor/dashboard/views.py and change:
 rpc_port="8332"
     rpc_user="user82ue99fwo3049f7c8a8d93dkall2l1l11"
