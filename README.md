@@ -6,7 +6,7 @@
 
 ### Status
 
-Tested on Raspberry Pi running Raspbian and Ubuntu. 
+Tested on Raspberry Pi running Raspbian and also on Ubuntu 18.04.01.
 
 ![NodeMonitor](https://wintercooled.github.io/images/NodeMonitor.png)
 
