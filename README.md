@@ -12,7 +12,7 @@ Tested on Raspberry Pi running Raspbian and Ubuntu.
 
 ### How to run
 
-Assumes you already have Bitcoin Core daemon (bitcoind) and c-lightning daemon (lightningd) installed and running.
+Assumes you already have Bitcoin Core daemon (bitcoind) and c-lightning daemon (lightningd) installed and running. If you don't have either running that's fine at this stage.
 
 Assumes you have python and python pip already installed.
 
@@ -85,3 +85,16 @@ python manage.py runserver 192.168.1.150:8000
 Browse to http://192.168.1.150:8000 from any local machine on the 192.168.*.* IP address range
 
 If you want to make the website available publically you need to follow instructions like [this](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Deployment).
+
+### To add extra node types or remove node types
+
+To remove a node type (e.g. if you do not run a Lightning node) or to add extra node types (e.g. if want to monitor an Elements or Liquid node) - edit the following files:
+
+```
+NodeMonitor/dashboard/templates/dashboard/index.html
+NodeMonitor/dashboard/views.py
+```
+views.py contains the code that connects to the nodes.
+
+index.html then displays the data returned.
+index.html conta
