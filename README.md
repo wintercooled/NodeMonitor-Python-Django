@@ -1,63 +1,87 @@
-Assumes you already have Bitcoin Core daemon (bitcoind) and c-lightning daemon (lightningd) installed and running
+# NodeMonitor is a simple Python Django website that makes calls to Bitcoin (bitcoind) and Lightning Network (c-lightning lightningd) nodes and displays the results on a simple 'dashboard' style status page.
 
-Assumes you have python and python pip already installed
+## The site can be accessed from any machine on your local network.
 
-Install virtualenv so we can set up an isolated build environment
+## The existing code makes calls to Bitcoin and Elements daemons but you can easily add other daemons, such as Elements or Liquid, by editing just two files.
 
-sudo pip install virtualenv
+### Status
 
-Move to the home directory
+Tested on Raspberry Pi running Raspbian and Ubuntu. 
 
-cd
+![NodeMonitor](https://wintercooled.github.io/images/NodeMonitor.png)
 
-Set up a virtualenv workspace for our project
+### How to run
 
-virtualenv python-django-workspace
+Assumes you already have Bitcoin Core daemon (bitcoind) and c-lightning daemon (lightningd) installed and running.
 
-Move into the new directory
+Assumes you have python and python pip already installed.
 
-cd python-django-workspace
+Install virtualenv so we can set up an isolated build environment.
 
-Install components we will use: 
-django as the web framework
-lightningd rpc using https://github.com/ElementsProject/lightning/tree/master/contrib/pylightning
-bitcoind rpc using https://github.com/jgarzik/python-bitcoinrpc
+```sudo apt install virtualenv```
 
-sudo python -m pip install "django<2"
-sudo pip install pylightning
-sudo pip install python-bitcoinrpc 
+Clone this repository into your chosen directory.
 
-CONFIG:
-todo - add u and p to settings file?
-edit nodemonitor/dashboard/views.py and change:
+```git clone https://github.com/wintercooled/NodeMonitor.git```
+
+Move into the new directory.
+
+```cd NodeMonitor```
+
+Add a virtualenv workspace for our project.
+
+```virtualenv .```
+
+Install the required dependancies. These are:
+
+django - https://www.djangoproject.com/
+pylightning - https://github.com/ElementsProject/lightning/tree/master/contrib/pylightning
+pythoin-bitcoinrpc - https://github.com/jgarzik/python-bitcoinrpc
+
+```
+python -m pip install "django<2"
+pip install pylightning
+pip install python-bitcoinrpc 
+```
+Check the set up worked by running the server.
+
+```python manage.py runserver```
+
+Browse to http://127.0.0.1:8000 to view the site.
+
+(Ctrl+c to stop server)
+
+Both nodes (Bitcoin and Lightning) will likely show as not running. This is because we have not set up the authentication details yet.
+
+Edit nodemonitor/dashboard/views.py and change the following lines to map to your own Bitcoin node's authentication settings:
+
+```
 rpc_port="8332"
-    rpc_user="user82ue99fwo3049f7c8a8d93dkall2l1l11"
-    rpc_password="passwordb084b7v85f7hd06s06d06fgd01shaj"
+rpc_user="user82ue99fwo3049f7c8a8d93dkall2l1l11"
+rpc_password="passwordb084b7v85f7hd06s06d06fgd01shaj"
+```
 
-and you need to change this to make sure it points to your nodes "lightning-rpc" socket file:
+Also within nodemonitor/dashboard/views.py you need to change this to make sure it points to your nodes "lightning-rpc" socket file:
+
+```
 ln = LightningRpc("/home/pi/.lightning/lightning-rpc")
+```
 
-find your machine's IP
+### To access the website from another machine on your local network:
+
+Find your machine's IP
+
+```
 ifconfig 
-192.168.etc
-let's say it is 192.188.1.150
+```
 
-use that and run the server using:
+Let's say it is 192.188.1.150 for the sake of example.
 
-cd nodemonitor
+Run the server using like this:
+
+```
 python manage.py runserver 192.168.1.150:8000
+```
+Browse to http://192.168.1.150:8000 from any local machine on the 192.168.*.* IP address range
 
-http://127.0.0.1:8000/dashboard/
-
-that actually uses the app in 'dashboard' which you can also get to via http://127.0.0.1:8000/dashboard/ - we just map the root url to that in the urls.py file.
-
-If you want to make the website available to other machines locally or public you need to change debug=false. see here for how to do this:
-
-
-You will want to also change the SECRET_KEY in settings.py as well - it should be set to a unique, unpredictable value. See here for details: https://docs.djangoproject.com/en/2.1/ref/settings/#secret-key
-
-Also: 
-LANGUAGE_CODE = 'en-gb'
-TIME_ZONE = 'UTC'
-
-
+If you want to make the website available publically you need to follow instructions like [this](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Deployment).
