@@ -12,7 +12,6 @@ def index(request):
     rpc_user="user82ue99fwo3049f7c8a8d93dkall2l1l11"
     rpc_password="passwordb084b7v85f7hd06s06d06fgd01shaj"
 
-
 # LIGHTNING NETWORK
 
     # Lightning Network Socket file (you might need to change this)
@@ -36,23 +35,26 @@ def index(request):
 
 # BITCOIN
 
+    b = BitcoinViewData(True)
+
     try:
         rpc_connection = AuthServiceProxy("http://%s:%s@127.0.0.1:%s"%(rpc_user, rpc_password, rpc_port))
-        b = BitcoinViewData(True)
         b_conn_count = rpc_connection.getconnectioncount()
         if b_conn_count > 0:
             b.online = True
-        #TODO - actually all this below needs to be in another try as running but not working if they go wrong
-        b.block_height = rpc_connection.getblockcount()
-        b_network_info = rpc_connection.getnetworkinfo()
-        b.peer_count = b_network_info["connections"]
-        b.version = b_network_info["subversion"]
-        #b.version = b.version[:-1]
-        #b.version = b.version[1:]
-        b.version = b.version.replace("/", "")
-        b.version = b.version.replace("Satoshi:", "")
-    except:
-        b = BitcoinViewData(False)
+    except Exception as e:
+        b.running = False
+
+    if b.running == True:
+        try:
+            b.block_height = rpc_connection.getblockcount()
+            b_network_info = rpc_connection.getnetworkinfo()
+            b.peer_count = b_network_info["connections"]
+            b.version = b_network_info["subversion"]
+            b.version = b.version.replace("/", "")
+            b.version = b.version.replace("Satoshi:", "")
+        except Exception as e:
+            b.message = str(e)
 
 
 # RETURN VIEW DATA
@@ -67,6 +69,7 @@ class BitcoinViewData:
         self.peer_count = 0
         self.block_height = 0
         self.version = ""
+        self.message = ""
 
 class LightningViewData:
     def __init__(self, running):
@@ -75,3 +78,4 @@ class LightningViewData:
         self.channel_count = 0
         self.block_height = 0
         self.version = ""
+        self.message = ""
