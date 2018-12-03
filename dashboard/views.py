@@ -42,7 +42,7 @@ def index(request):
         b_conn_count = rpc_connection.getconnectioncount()
         if b_conn_count > 0:
             b.online = True
-        #TODO - actually all this below needs to be in another try as running but not working if they eff up
+        #TODO - actually all this below needs to be in another try as running but not working if they go wrong
         b.block_height = rpc_connection.getblockcount()
         b_network_info = rpc_connection.getnetworkinfo()
         b.peer_count = b_network_info["connections"]
