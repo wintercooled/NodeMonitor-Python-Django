@@ -1,5 +1,7 @@
 # NodeMonitor is a simple Python Django website that makes calls to Bitcoin (bitcoind) and Lightning Network (c-lightning lightningd) nodes and displays the results on a simple 'dashboard' style status page.
 
+If you prefer to work with **Flask** there is a Flask version [here](https://github.com/wintercooled/NodeMonitor-Python-Flask) (work in prgress).
+
 ## The code makes calls to Bitcoin and Lightning daemons but you can easily add other daemons, such as Elements or Liquid, by editing just two files.
 
 ## The site can be accessed from any machine on your local network.
