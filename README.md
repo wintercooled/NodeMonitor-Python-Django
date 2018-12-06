@@ -8,6 +8,7 @@
 
 Tested on Raspberry Pi running Raspbian and also on Ubuntu 18.04.01.
 
+<br />
 <p align="center">
   <img width="600" src="https://wintercooled.github.io/images/NodeMonitor.png">
 </p>
@@ -88,6 +89,7 @@ python manage.py runserver 192.168.1.150:8000
 
 Browse to http://192.168.1.150:8000 from any local machine on the 192.168.\*.\* IP address range, including mobile devices:
 
+<br />
 <p align="center">
   <img width="600" src="https://wintercooled.github.io/images/nodemonitormobile.png">
 </p>
