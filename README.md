@@ -40,7 +40,7 @@ django - https://www.djangoproject.com/
 
 pylightning - https://github.com/ElementsProject/lightning/tree/master/contrib/pylightning
 
-pythoin-bitcoinrpc - https://github.com/jgarzik/python-bitcoinrpc
+python-bitcoinrpc - https://github.com/jgarzik/python-bitcoinrpc
 
 ```
 python -m pip install "django<2"
