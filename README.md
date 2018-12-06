@@ -83,7 +83,9 @@ Run the server using like this:
 ```
 python manage.py runserver 192.168.1.150:8000
 ```
-Browse to http://192.168.1.150:8000 from any local machine on the 192.168.*.* IP address range
+Browse to http://192.168.1.150:8000 from any local machine on the 192.168.\*.\* IP address range, including mobile devices:
+
+![NodeMonitor](https://wintercooled.github.io/images/nodemonitormobile.png)
 
 If you want to make the website available publically you need to follow instructions like [this](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Deployment).
 
