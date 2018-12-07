@@ -1,7 +1,3 @@
 /**/*.pyc
-/bin
-/include
-/lib
-/local
-/share
+/node_monitor_workspace
 .directory

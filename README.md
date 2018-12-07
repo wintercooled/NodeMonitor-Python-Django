@@ -26,17 +26,21 @@ Install virtualenv so we can set up an isolated build environment.
 
 Clone this repository into your chosen directory.
 
-```git clone https://github.com/wintercooled/NodeMonitor.git```
+```git clone https://github.com/wintercooled/NodeMonitor-Python-Django.git```
 
 Move into the new directory.
 
-```cd NodeMonitor```
+```cd NodeMonitor-Python-Django```
 
 Add a virtualenv workspace for our project.
 
-```virtualenv .```
+```virtualenv node_monitor_workspace```
 
-Install the required dependancies. These are:
+Activate the workspace.
+
+```source node_monitor_workspace/bin/activate```
+
+Install the required dependancies to the workspace. These are:
 
 django - https://www.djangoproject.com/
 
@@ -55,7 +59,13 @@ Check the set up worked by running the server.
 
 Browse to http://127.0.0.1:8000 to view the site.
 
-(Ctrl+c to stop server)
+To stop the server press Ctrl+c.
+
+Don't forget to deactivate the virtualenv workspace when you are done:
+
+```deactivate```
+
+...and remember to activate using ```source node_monitor_workspace/bin/activate``` from within the NodeMonitor-Python-Django directory whenever you want to run it again.
 
 Both nodes (Bitcoin and Lightning) will likely show as not running. This is because we have not set up the authentication details yet.
 
